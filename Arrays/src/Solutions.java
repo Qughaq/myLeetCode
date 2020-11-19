@@ -6,16 +6,34 @@ import java.util.List;
 public class Solutions {
 
     public static void main(String[] args) {
-        int[] arr = {4, 3, 2, 7, 8, 2, 3, 1};
-        moveZeroes(arr);
-        System.out.println((findDuplicates(arr)));
+        int[] arr1 = {1, 3, 5, 6};
+        int[] arr2 = {1, 3, 5, 6};
+        System.out.println((searchInsert(arr1, 1)));
+    }
+
+    public static int searchInsert(int[] nums, int target) {
+
+        return 1;
+    }
+
+    public static int pivotIndex(int[] nums) {
+        int sum = 0;
+        int leftSum = 0;
+        for (int num : nums)
+            sum += num;
+        for (int i = 0; i < nums.length; i++) {
+            if ( leftSum * 2 + nums[i] == sum )
+                return i;
+            leftSum += nums[i];
+        }
+        return -1;
     }
 
     public static List<Integer> findDuplicates(int[] nums) {
         List<Integer> result = new ArrayList<>();
         for (int num : nums) {
             int index = Math.abs(num) - 1;
-            if (nums[index] > 0)
+            if ( nums[index] > 0 )
                 nums[index] *= -1;
             else
                 result.add(index + 1);
@@ -33,7 +51,7 @@ public class Solutions {
 
     public static int[] sortArrayByParity(int[] A) {
         for (int slow = 0, fast = 0; fast < A.length; fast++) {
-            if (A[fast] % 2 == 0) {
+            if ( A[fast] % 2 == 0 ) {
                 A[fast] = (A[fast] + A[slow]) - (A[slow++] = A[fast]);
             }
         }
@@ -46,7 +64,7 @@ public class Solutions {
     public static void moveZeroes(int[] nums) {
         int slow = 0;
         for (int fast = 0; fast < nums.length; fast++) {
-            if (nums[fast] != 0) {
+            if ( nums[fast] != 0 ) {
                 nums[slow++] = nums[fast];
             }
         }
@@ -67,7 +85,7 @@ public class Solutions {
     }
 
     public static boolean validMountainArray(int[] arr) {
-        if (arr.length >= 3) {
+        if ( arr.length >= 3 ) {
             int left = 0;
             int right = arr.length - 1;
             // 左侧爬山
@@ -76,9 +94,9 @@ public class Solutions {
             // 右侧爬山
             while (right - 1 > 0 && arr[right] < arr[right - 1])
                 right--;
-            if (left == arr.length - 1) // 只有上破
+            if ( left == arr.length - 1 ) // 只有上破
                 return false;
-            else if (right == 0) // 只有下坡
+            else if ( right == 0 ) // 只有下坡
                 return false;
             return left == right;
         }
@@ -88,7 +106,7 @@ public class Solutions {
     public static boolean checkIfExist(int[] arr) {
         HashMap<Integer, Integer> hashtable = new HashMap<>();
         for (int i = 0; i < arr.length; i++) {
-            if (hashtable.containsValue(arr[i] * 2) || (arr[i] % 2 == 0 && hashtable.containsValue(arr[i] / 2))) {
+            if ( hashtable.containsValue(arr[i] * 2) || (arr[i] % 2 == 0 && hashtable.containsValue(arr[i] / 2)) ) {
                 return true;
             }
             hashtable.put(i, arr[i]);
