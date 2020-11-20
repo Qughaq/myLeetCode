@@ -3,17 +3,52 @@ import java.util.Arrays;
 import java.util.HashMap;
 import java.util.List;
 
-public class Solutions {
+public class ArraySolutions {
 
     public static void main(String[] args) {
-        int[] arr1 = {1, 3, 5, 6};
-        int[] arr2 = {1, 3, 5, 6};
-        System.out.println((searchInsert(arr1, 1)));
+        int[] arr1 = {1, 3};
+        int[] arr2 = {2};
+        System.out.println((findMedianSortedArrays(arr1, arr2)));
+        System.out.println(longestPalindrome("abc7dcbaaaa"));
+    }
+
+    public static String longestPalindrome(String s) {
+        if ( s == null || s.length() < 1 ) return "";
+        int start = 0;
+        int end = 0;
+        for (int i = 0; i < s.length(); i++) {
+            int len1 = expandFromMiddle(s, i, i);
+            int len2 = expandFromMiddle(s, i, i + 1);
+            int len = Math.max(len1, len2);
+            if ( len > end - start ) {
+                start = i - ((len - 1) / 2);
+                end = i + (len / 2);
+            }
+        }
+        return s.substring(start, end + 1);
+    }
+
+    public static int expandFromMiddle(String s, int left, int right) {
+        if ( s == null || left > right )
+            return 0;
+        while (left >= 0 && right < s.length() && s.charAt(left) == s.charAt(right)) {
+            left--;
+            right++;
+        }
+        return right - left - 1;
     }
 
     public static int searchInsert(int[] nums, int target) {
 
         return 1;
+    }
+
+    public static double findMedianSortedArrays(int[] nums1, int[] nums2) {
+        int m = nums1.length;
+        int n = nums2.length;
+
+
+        return 0;
     }
 
     public static int pivotIndex(int[] nums) {
@@ -112,7 +147,7 @@ public class Solutions {
         for (int i = 0; i < nums.length; i++)
             nums[Math.abs(nums[i]) - 1] = -Math.abs(nums[Math.abs(nums[i]) - 1]);
         for (int i = 0; i < nums.length; i++)
-            if (nums[i] > 0)
+            if ( nums[i] > 0 )
                 result.add(i + 1);
         return result;
     }
@@ -122,16 +157,16 @@ public class Solutions {
         long secondMax = Long.MIN_VALUE;
         long thirdMax = Long.MIN_VALUE;
         for (int n : nums) {
-            if (n == firstMax || n == secondMax || n == thirdMax)
+            if ( n == firstMax || n == secondMax || n == thirdMax )
                 continue;
-            if (n > firstMax) {
+            if ( n > firstMax ) {
                 thirdMax = secondMax;
                 secondMax = firstMax;
                 firstMax = n;
-            } else if (n > secondMax) {
+            } else if ( n > secondMax ) {
                 thirdMax = secondMax;
                 secondMax = n;
-            } else if (n > thirdMax)
+            } else if ( n > thirdMax )
                 thirdMax = n;
         }
         return (int) (thirdMax == Long.MIN_VALUE ? firstMax : thirdMax);
@@ -142,18 +177,18 @@ public class Solutions {
         int[] sorted = Arrays.copyOf(heights, heights.length);
         Arrays.sort(sorted);
         for (int i = 0; i < heights.length; i++)
-            if (sorted[i] != heights[i])
+            if ( sorted[i] != heights[i] )
                 count++;
         return count;
     }
 
     private static int removeDuplicates(int[] nums) {
         int i = 0;
-        if (nums.length == 0) {
+        if ( nums.length == 0 ) {
             return 0;
         }
         for (int j = 0; j < nums.length; j++)
-            if (nums[j] != nums[i])
+            if ( nums[j] != nums[i] )
                 nums[++i] = nums[j];
         return i + 1;
     }
@@ -161,7 +196,7 @@ public class Solutions {
     public static int removeElement(int[] nums, int val) {
         int i = 0;
         for (int j = 0; j < nums.length; j++)
-            if (nums[j] != val)
+            if ( nums[j] != val )
                 nums[i++] = nums[j];
         return i;
     }
@@ -171,7 +206,7 @@ public class Solutions {
         int j = n - 1;
         int k = m + n - 1;
         while (i >= 0 && j >= 0)
-            if (nums1[i] > nums2[j])
+            if ( nums1[i] > nums2[j] )
                 nums1[k--] = nums1[i--];
             else
                 nums1[k--] = nums2[j--];
@@ -181,9 +216,9 @@ public class Solutions {
 
     public static void duplicateZeros(int[] arr) {
         for (int i = 0; i < arr.length - 1; i++) {
-            if (arr[i] == 0) {
+            if ( arr[i] == 0 ) {
                 i++;
-                if (arr.length - 1 - i >= 0)
+                if ( arr.length - 1 - i >= 0 )
                     System.arraycopy(arr, i, arr, i + 1, arr.length - 1 - i);
                 arr[i] = 0;
             }
@@ -207,7 +242,7 @@ public class Solutions {
                 numberOfDigits++;
                 s = s / 10;
             }
-            if (numberOfDigits % 2 == 0)
+            if ( numberOfDigits % 2 == 0 )
                 numbers++;
         }
         return numbers;
@@ -217,7 +252,7 @@ public class Solutions {
         int max = -1;
         int s = 0;
         for (int num : nums)
-            if (num == 1) {
+            if ( num == 1 ) {
                 s++;
                 max = Math.max(max, s);
             } else
