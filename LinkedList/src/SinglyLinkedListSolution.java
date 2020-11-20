@@ -19,6 +19,28 @@ public class SinglyLinkedListSolution {
         }
     }
 
+    public ListNode insertionSortList(ListNode head) {
+        if ( head != null ) return null;
+        ListNode sortedHeadPrev = new ListNode(0);
+        ListNode lastSorted = head;
+        ListNode curr = head.next;
+        sortedHeadPrev.next = head;
+        while (curr != null) {
+            if ( lastSorted.val <= curr.val )
+                lastSorted = lastSorted.next;
+            else {
+                ListNode prev = sortedHeadPrev;
+                while (prev.next.val <= curr.val)
+                    prev = prev.next;
+                lastSorted.next = curr.next;
+                curr.next = prev.next;
+                prev.next = curr;
+            }
+            curr = lastSorted.next;
+        }
+        return sortedHeadPrev.next;
+    }
+
     public ListNode addTwoNumbers(ListNode l1, ListNode l2) {
         int carry = 0;
         ListNode resultHead = new ListNode(0);
