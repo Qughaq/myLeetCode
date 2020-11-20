@@ -1,7 +1,7 @@
-class MySinglyLinkedList {
-    Node head;
-    Node tail;
-    int size;
+public class ListNode {
+    private Node head;
+    private Node tail;
+    private int size;
 
     class Node {
         int val;
@@ -16,9 +16,8 @@ class MySinglyLinkedList {
     /**
      * Initialize your data structure here.
      */
-    public MySinglyLinkedList() {
-        head = new
-                Node(0);
+    public ListNode() {
+        head = new Node(0);
         tail = head;
         size = 0;
     }
