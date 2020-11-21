@@ -8,31 +8,6 @@ public class ArraySolutions {
 
     public static void main(String[] args) {
         int[][] matrix = {{1, 2, 3}, {4, 5, 6}, {7, 8, 9}};
-        System.out.println(Arrays.toString(findDiagonalOrder(matrix)));
-    }
-
-    public static int[] findDiagonalOrder(int[][] matrix) {
-        int width = matrix[0].length;
-        int height = matrix.length;
-        int x = 0, y = 0;
-        int[] result = new int[width + height];
-        if ( width + height == 0 )
-            return result;
-        for (int i = 0; i < width + height - 2; i++) {
-            // 如果是偶数
-            while (i / 2 == 0) {
-                while (y>0 && x<width-1)
-                    result.
-                    for (int p = i, q = 0; q < i; p--, q++) {
-                        result[i] = matrix[p][q];
-                    }
-            }
-            //如果是偶数
-            while (i / 2 != 0) {
-
-            }
-        }
-        return result;
     }
 
     public static int[] plusOne(int[] digits) {
