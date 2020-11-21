@@ -2,14 +2,88 @@ import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 public class ArraySolutions {
 
     public static void main(String[] args) {
-        int[] arr1 = {1, 3};
-        int[] arr2 = {2};
-        System.out.println((findMedianSortedArrays(arr1, arr2)));
-        System.out.println(longestPalindrome("abc7dcbaaaa"));
+        int[][] matrix = {{1, 2, 3}, {4, 5, 6}, {7, 8, 9}};
+        System.out.println(Arrays.toString(findDiagonalOrder(matrix)));
+    }
+
+    public static int[] findDiagonalOrder(int[][] matrix) {
+        int width = matrix[0].length;
+        int height = matrix.length;
+        int x = 0, y = 0;
+        int[] result = new int[width + height];
+        if ( width + height == 0 )
+            return result;
+        for (int i = 0; i < width + height - 2; i++) {
+            // 如果是偶数
+            while (i / 2 == 0) {
+                while (y>0 && x<width-1)
+                    result.
+                    for (int p = i, q = 0; q < i; p--, q++) {
+                        result[i] = matrix[p][q];
+                    }
+            }
+            //如果是偶数
+            while (i / 2 != 0) {
+
+            }
+        }
+        return result;
+    }
+
+    public static int[] plusOne(int[] digits) {
+        for (int i = digits.length - 1; i >= 0; i--) {
+            digits[i]++;
+            digits[i] = digits[i] % 10;
+            if ( digits[i] != 0 ) return digits;
+        }
+        digits = new int[digits.length + 1];
+        digits[0] = 1;
+        return digits;
+    }
+
+    public static int dominantIndex(int[] nums) {
+        if ( nums.length == 1 ) return 0;
+        int maxIndex = -1;
+        int max = nums[0];
+        for (int i = 0; i < nums.length; i++) {
+            if ( max <= nums[i] ) {
+                max = nums[i];
+                maxIndex = i;
+            }
+        }
+        for (int num : nums)
+            if ( num != max && max < 2 * num )
+                return -1;
+        return maxIndex;
+    }
+
+    public static boolean isPalindrome(int x) {
+        if ( x < 0 || (x % 10 == 0 && x != 0) )
+            return false;
+        int rev = 0;
+        int lastDigit;
+        while (x != 0 && x > rev) {
+            lastDigit = x % 10;
+            rev = rev * 10 + lastDigit;
+            x /= 10;
+        }
+        return rev == x || rev / 10 == x;
+    }
+
+    public static int[] twoSum(int[] nums, int target) {
+        Map<Integer, Integer> map = new HashMap<>();
+        for (int i = 0; i < nums.length; i++) {
+            int pair = target - nums[i];
+            if ( map.containsKey(pair) )
+                return new int[]{map.get(pair), i};
+            map.put(nums[i], i);
+        }
+        return null;
     }
 
     public static String longestPalindrome(String s) {
@@ -111,15 +185,35 @@ public class ArraySolutions {
         return arr;
     }
 
+    public int longestMountain(int[] arr) {
+        int maxLen = 1;
+        int i = 0;
+        while (i < arr.length) {
+            int increasing = 0, decreasing = 0;
+            while (i < arr.length && arr[i - 1] < arr[i]) {
+                i++;
+                increasing++;
+            }
+            while (i < arr.length && arr[i - 1] > arr[i]) {
+                i++;
+                decreasing++;
+            }
+            if ( increasing > 0 && decreasing > 0 )
+                maxLen = Math.max(maxLen, increasing + decreasing + 1);
+            while (i < arr.length && arr[i - 1] == arr[i]) i++;
+        }
+        return maxLen;
+    }
+
     public static boolean validMountainArray(int[] arr) {
         if ( arr.length >= 3 ) {
             int left = 0;
             int right = arr.length - 1;
             // 左侧爬山
-            while (left + 1 < arr.length && arr[left] < arr[left + 1])
+            while (left < arr.length - 1 && arr[left] < arr[left + 1])
                 left++;
             // 右侧爬山
-            while (right - 1 > 0 && arr[right] < arr[right - 1])
+            while (right > 1 && arr[right] < arr[right - 1])
                 right--;
             if ( left == arr.length - 1 ) // 只有上破
                 return false;

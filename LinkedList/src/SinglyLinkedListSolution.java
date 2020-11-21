@@ -19,6 +19,23 @@ public class SinglyLinkedListSolution {
         }
     }
 
+    public ListNode rotateRight(ListNode head, int k) {
+        if ( head == null || head.next == null ) return head;
+        ListNode tail = head;
+        int len = 1;
+        while (tail.next != null) {
+            tail = tail.next;
+            len++;
+        }
+        // 形成环形单链表，然后旋转链表
+        tail.next = head;
+        for (int step = 1; step <= len - k % len; step++)
+            tail = tail.next;
+        head = tail.next;
+        tail.next = null;
+        return head;
+    }
+
     public ListNode insertionSortList(ListNode head) {
         if ( head != null ) return null;
         ListNode sortedHeadPrev = new ListNode(0);
