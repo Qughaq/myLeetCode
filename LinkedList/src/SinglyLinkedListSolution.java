@@ -19,6 +19,45 @@ public class SinglyLinkedListSolution {
         }
     }
 
+    public ListNode rotateRight(ListNode head, int k) {
+        if ( head == null || head.next == null ) return head;
+        ListNode tail = head;
+        int len = 1;
+        while (tail.next != null) {
+            tail = tail.next;
+            len++;
+        }
+        // 形成环形单链表，然后旋转链表
+        tail.next = head;
+        for (int step = 1; step <= len - k % len; step++)
+            tail = tail.next;
+        head = tail.next;
+        tail.next = null;
+        return head;
+    }
+
+    public ListNode insertionSortList(ListNode head) {
+        if ( head != null ) return null;
+        ListNode sortedHeadPrev = new ListNode(0);
+        ListNode lastSorted = head;
+        ListNode curr = head.next;
+        sortedHeadPrev.next = head;
+        while (curr != null) {
+            if ( lastSorted.val <= curr.val )
+                lastSorted = lastSorted.next;
+            else {
+                ListNode prev = sortedHeadPrev;
+                while (prev.next.val <= curr.val)
+                    prev = prev.next;
+                lastSorted.next = curr.next;
+                curr.next = prev.next;
+                prev.next = curr;
+            }
+            curr = lastSorted.next;
+        }
+        return sortedHeadPrev.next;
+    }
+
     public ListNode addTwoNumbers(ListNode l1, ListNode l2) {
         int carry = 0;
         ListNode resultHead = new ListNode(0);
