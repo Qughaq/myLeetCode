@@ -1,3 +1,6 @@
+import org.omg.PortableInterceptor.SYSTEM_EXCEPTION;
+
+import java.lang.reflect.Array;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.HashMap;
@@ -47,13 +50,170 @@ public class HashTableSolution {
 //        String s = "leetcode";
 //        System.out.println(firstUniqChar(s));
 
-        int[] nums1 = {1,2,2,1};
-        int[] nums2 = {2,2};
+//        int[] nums1 = {4, 9, 5};
+//        int[] nums2 = {9, 4, 9, 8, 4};
+//        System.out.println(Arrays.toString(intersect(nums1, nums2)));
+
+//        int[] nums = {99, 99};
+//        int k = 2;
+//        System.out.println(containsNearbyDuplicate(nums, k));
+
+//        String[] strs = {};
+//        System.out.println(groupAnagrams(strs));
+
+
+//        char[][] board = {
+//                {'5', '3', '.', '.', '7', '.', '.', '.', '.'},
+//                {'6', '.', '.', '1', '9', '5', '.', '.', '.'},
+//                {'.', '9', '8', '.', '.', '.', '.', '6', '.'},
+//                {'8', '.', '.', '.', '6', '.', '.', '.', '3'},
+//                {'4', '.', '.', '8', '.', '3', '.', '.', '1'},
+//                {'7', '.', '.', '.', '2', '.', '.', '.', '6'},
+//                {'.', '6', '.', '.', '.', '.', '2', '8', '.'},
+//                {'.', '.', '.', '4', '1', '9', '.', '.', '5'},
+//                {'.', '.', '.', '.', '8', '.', '.', '7', '9'}};
+//        System.out.println(isValidSudoku(board));
+
+
+//        String J = "aA";
+//        String S = "ZZZ";
+//        System.out.print(numJewelsInStones(J, S));
+
+//        String s = "bbbbb3";
+//        System.out.println(lengthOfLongestSubstring(s));
+
+//        int[] A = {1, 2};
+//        int[] B = {-2, -1};
+//        int[] C = {-1, 2};
+//        int[] D = {0, 2};
+//        System.out.println(fourSumCount(A, B, C, D));
+
+        int[] nums = {1, 2, 1, 2, 3, 4, 5, 6, 6, 6};
+        int k = 2;
+        System.out.println(Arrays.toString(topKFrequent(nums, k)));
     }
 
-    public int[] intersect(int[] nums1, int[] nums2) {
+    public static int[] topKFrequent(int[] nums, int k) {
+        Map<Integer, Integer> hashMap = new HashMap<>();
+        Set<Integer> resultSet = new HashSet<>();
+        for (int num : nums) {
+            hashMap.put(num, hashMap.getOrDefault(num, 0) + 1);
+        }
+        int[][] result = new int[hashMap.size()][2];
+        Object[] keys = hashMap.keySet().toArray();
+        Object[] values = hashMap.values().toArray();
+        for (int i = 0; i < keys.length; i++) {
+            result[i][0] = (int) keys[i];
+            result[i][1] = (int) values[i];
+        }
+        Arrays.sort(result[2]);
+        return result[1];
+    }
 
-        return null;
+    public static int fourSumCount(int[] A, int[] B, int[] C, int[] D) {
+        Map<Integer, Integer> map = new HashMap<>();
+        int count = 0;
+        for (int numA : A)
+            for (int numB : B) {
+                int sumAB = numA + numB;
+                map.put(sumAB, map.getOrDefault(sumAB, 0) + 1);
+            }
+        for (int numC : C)
+            for (int numD : D) {
+                int sumDC = numC + numD;
+                if (map.containsKey(-sumDC))
+                    count += map.get(-sumDC);
+            }
+        return count;
+    }
+
+    public static int lengthOfLongestSubstring(String s) {
+        Set<Character> seen = new HashSet<>();
+        int slow = 0, fast = 0, max = 0;
+        while (fast < s.length()) {
+            if (!seen.contains(s.charAt(fast))) {
+                seen.add(s.charAt(fast++));
+                max = Math.max(seen.size(), max);
+            } else {
+                seen.remove(s.charAt(slow++));
+            }
+        }
+        return max;
+    }
+
+    public static int numJewelsInStones(String J, String S) {
+        HashSet<Character> jewels = new HashSet<>();
+        for (int i = 0; i < J.length(); i++)
+            jewels.add(J.charAt(i));
+        int count = 0;
+        for (int i = 0; i < S.length(); i++)
+            if (jewels.contains(S.charAt(i)))
+                count++;
+        return count;
+    }
+
+    public static boolean isValidSudoku(char[][] board) {
+        HashSet<String> seen = new HashSet<>();
+        for (int i = 0; i < 9; i++) {
+            for (int j = 0; j < 9; j++) {
+                char current = board[i][j];
+                if (current != '.')
+                    if (!seen.add(current + "出现在行" + i)
+                            || !seen.add(current + "出现在列" + j)
+                            || !seen.add(current + "出现在子箱" + i / 3 + "-" + j / 3))
+                        return false;
+            }
+        }
+        return true;
+    }
+
+    public static List<List<String>> groupAnagrams(String[] strs) {
+        HashMap<String, List<String>> hashMap = new HashMap<>();
+        for (String str : strs) {
+            char[] chars = str.toCharArray();
+            Arrays.sort(chars);
+            String sortedStr = String.valueOf(chars);
+            if (!hashMap.containsKey(sortedStr))
+                hashMap.put(sortedStr, new ArrayList<>());
+            hashMap.get(sortedStr).add(str);
+        }
+        return new ArrayList<>(hashMap.values());
+    }
+
+    public static boolean containsNearbyDuplicate(int[] nums, int k) {
+        HashMap<Integer, Integer> hashMap = new HashMap<>();
+        for (int i = 0; i < nums.length; i++) {
+            if (hashMap.containsKey(nums[i])) {
+                if (i - hashMap.get(nums[i]) <= k)
+                    return true;
+            }
+            hashMap.put(nums[i], i);
+        }
+        return false;
+    }
+
+    public static int[] intersect(int[] nums1, int[] nums2) {
+        HashMap<Integer, Integer> hashMap = new HashMap<>();
+        ArrayList<Integer> resultList = new ArrayList<>();
+        for (int num1 : nums1) {
+            if (hashMap.containsKey(num1)) {
+                hashMap.put(num1, hashMap.get(num1) + 1);
+            } else hashMap.put(num1, 1);
+        }
+        for (int num2 : nums2) {
+            if (hashMap.containsKey(num2)) {
+                resultList.add(num2);
+                hashMap.put(num2, hashMap.get(num2) - 1);
+                if (hashMap.get(num2) == 0) {
+                    hashMap.remove(num2);
+                }
+            }
+        }
+        int[] result = new int[resultList.size()];
+        for (int i = 0; i < resultList.size(); i++) {
+            result[i] = resultList.get(i);
+        }
+        return result;
     }
 
     public static int firstUniqChar(String s) {
