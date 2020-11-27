@@ -8,13 +8,19 @@ public class ArraySolutions {
 
     public static void main(String[] args) {
         int[][] matrix = {{1, 2, 3}, {4, 5, 6}, {7, 8, 9}};
+        System.out.println(Arrays.toString(findDiagonalOrder(matrix)));
+    }
+
+    public static int[] findDiagonalOrder(int[][] matrix) {
+
+        return null;
     }
 
     public static int[] plusOne(int[] digits) {
         for (int i = digits.length - 1; i >= 0; i--) {
             digits[i]++;
             digits[i] = digits[i] % 10;
-            if ( digits[i] != 0 ) return digits;
+            if (digits[i] != 0) return digits;
         }
         digits = new int[digits.length + 1];
         digits[0] = 1;
@@ -22,23 +28,23 @@ public class ArraySolutions {
     }
 
     public static int dominantIndex(int[] nums) {
-        if ( nums.length == 1 ) return 0;
+        if(nums.length==1) return 0;
         int maxIndex = -1;
         int max = nums[0];
         for (int i = 0; i < nums.length; i++) {
-            if ( max <= nums[i] ) {
+            if (max <= nums[i]) {
                 max = nums[i];
                 maxIndex = i;
             }
         }
         for (int num : nums)
-            if ( num != max && max < 2 * num )
+            if (num != max && max < 2 * num)
                 return -1;
         return maxIndex;
     }
 
     public static boolean isPalindrome(int x) {
-        if ( x < 0 || (x % 10 == 0 && x != 0) )
+        if (x < 0 || (x % 10 == 0 && x != 0))
             return false;
         int rev = 0;
         int lastDigit;
@@ -54,7 +60,7 @@ public class ArraySolutions {
         Map<Integer, Integer> map = new HashMap<>();
         for (int i = 0; i < nums.length; i++) {
             int pair = target - nums[i];
-            if ( map.containsKey(pair) )
+            if (map.containsKey(pair))
                 return new int[]{map.get(pair), i};
             map.put(nums[i], i);
         }
@@ -62,14 +68,14 @@ public class ArraySolutions {
     }
 
     public static String longestPalindrome(String s) {
-        if ( s == null || s.length() < 1 ) return "";
+        if (s == null || s.length() < 1) return "";
         int start = 0;
         int end = 0;
         for (int i = 0; i < s.length(); i++) {
             int len1 = expandFromMiddle(s, i, i);
             int len2 = expandFromMiddle(s, i, i + 1);
             int len = Math.max(len1, len2);
-            if ( len > end - start ) {
+            if (len > end - start) {
                 start = i - ((len - 1) / 2);
                 end = i + (len / 2);
             }
@@ -78,7 +84,7 @@ public class ArraySolutions {
     }
 
     public static int expandFromMiddle(String s, int left, int right) {
-        if ( s == null || left > right )
+        if (s == null || left > right)
             return 0;
         while (left >= 0 && right < s.length() && s.charAt(left) == s.charAt(right)) {
             left--;
@@ -106,7 +112,7 @@ public class ArraySolutions {
         for (int num : nums)
             sum += num;
         for (int i = 0; i < nums.length; i++) {
-            if ( leftSum * 2 + nums[i] == sum )
+            if (leftSum * 2 + nums[i] == sum)
                 return i;
             leftSum += nums[i];
         }
@@ -117,7 +123,7 @@ public class ArraySolutions {
         List<Integer> result = new ArrayList<>();
         for (int num : nums) {
             int index = Math.abs(num) - 1;
-            if ( nums[index] > 0 )
+            if (nums[index] > 0)
                 nums[index] *= -1;
             else
                 result.add(index + 1);
@@ -127,7 +133,7 @@ public class ArraySolutions {
 
     public static int[] sortArrayByParity(int[] A) {
         for (int slow = 0, fast = 0; fast < A.length; fast++) {
-            if ( A[fast] % 2 == 0 ) {
+            if (A[fast] % 2 == 0) {
                 A[fast] = (A[fast] + A[slow]) - (A[slow++] = A[fast]);
             }
         }
@@ -140,7 +146,7 @@ public class ArraySolutions {
     public static void moveZeroes(int[] nums) {
         int slow = 0;
         for (int fast = 0; fast < nums.length; fast++) {
-            if ( nums[fast] != 0 ) {
+            if (nums[fast] != 0) {
                 nums[slow++] = nums[fast];
             }
         }
@@ -173,7 +179,7 @@ public class ArraySolutions {
                 i++;
                 decreasing++;
             }
-            if ( increasing > 0 && decreasing > 0 )
+            if (increasing > 0 && decreasing > 0)
                 maxLen = Math.max(maxLen, increasing + decreasing + 1);
             while (i < arr.length && arr[i - 1] == arr[i]) i++;
         }
@@ -181,7 +187,7 @@ public class ArraySolutions {
     }
 
     public static boolean validMountainArray(int[] arr) {
-        if ( arr.length >= 3 ) {
+        if (arr.length >= 3) {
             int left = 0;
             int right = arr.length - 1;
             // 左侧爬山
@@ -190,9 +196,9 @@ public class ArraySolutions {
             // 右侧爬山
             while (right > 1 && arr[right] < arr[right - 1])
                 right--;
-            if ( left == arr.length - 1 ) // 只有上破
+            if (left == arr.length - 1) // 只有上破
                 return false;
-            else if ( right == 0 ) // 只有下坡
+            else if (right == 0) // 只有下坡
                 return false;
             return left == right;
         }
@@ -202,7 +208,7 @@ public class ArraySolutions {
     public static boolean checkIfExist(int[] arr) {
         HashMap<Integer, Integer> hashtable = new HashMap<>();
         for (int i = 0; i < arr.length; i++) {
-            if ( hashtable.containsValue(arr[i] * 2) || (arr[i] % 2 == 0 && hashtable.containsValue(arr[i] / 2)) ) {
+            if (hashtable.containsValue(arr[i] * 2) || (arr[i] % 2 == 0 && hashtable.containsValue(arr[i] / 2))) {
                 return true;
             }
             hashtable.put(i, arr[i]);
@@ -216,7 +222,7 @@ public class ArraySolutions {
         for (int i = 0; i < nums.length; i++)
             nums[Math.abs(nums[i]) - 1] = -Math.abs(nums[Math.abs(nums[i]) - 1]);
         for (int i = 0; i < nums.length; i++)
-            if ( nums[i] > 0 )
+            if (nums[i] > 0)
                 result.add(i + 1);
         return result;
     }
@@ -226,16 +232,16 @@ public class ArraySolutions {
         long secondMax = Long.MIN_VALUE;
         long thirdMax = Long.MIN_VALUE;
         for (int n : nums) {
-            if ( n == firstMax || n == secondMax || n == thirdMax )
+            if (n == firstMax || n == secondMax || n == thirdMax)
                 continue;
-            if ( n > firstMax ) {
+            if (n > firstMax) {
                 thirdMax = secondMax;
                 secondMax = firstMax;
                 firstMax = n;
-            } else if ( n > secondMax ) {
+            } else if (n > secondMax) {
                 thirdMax = secondMax;
                 secondMax = n;
-            } else if ( n > thirdMax )
+            } else if (n > thirdMax)
                 thirdMax = n;
         }
         return (int) (thirdMax == Long.MIN_VALUE ? firstMax : thirdMax);
@@ -246,18 +252,18 @@ public class ArraySolutions {
         int[] sorted = Arrays.copyOf(heights, heights.length);
         Arrays.sort(sorted);
         for (int i = 0; i < heights.length; i++)
-            if ( sorted[i] != heights[i] )
+            if (sorted[i] != heights[i])
                 count++;
         return count;
     }
 
     private static int removeDuplicates(int[] nums) {
         int i = 0;
-        if ( nums.length == 0 ) {
+        if (nums.length == 0) {
             return 0;
         }
         for (int j = 0; j < nums.length; j++)
-            if ( nums[j] != nums[i] )
+            if (nums[j] != nums[i])
                 nums[++i] = nums[j];
         return i + 1;
     }
@@ -265,7 +271,7 @@ public class ArraySolutions {
     public static int removeElement(int[] nums, int val) {
         int i = 0;
         for (int j = 0; j < nums.length; j++)
-            if ( nums[j] != val )
+            if (nums[j] != val)
                 nums[i++] = nums[j];
         return i;
     }
@@ -275,7 +281,7 @@ public class ArraySolutions {
         int j = n - 1;
         int k = m + n - 1;
         while (i >= 0 && j >= 0)
-            if ( nums1[i] > nums2[j] )
+            if (nums1[i] > nums2[j])
                 nums1[k--] = nums1[i--];
             else
                 nums1[k--] = nums2[j--];
@@ -285,9 +291,9 @@ public class ArraySolutions {
 
     public static void duplicateZeros(int[] arr) {
         for (int i = 0; i < arr.length - 1; i++) {
-            if ( arr[i] == 0 ) {
+            if (arr[i] == 0) {
                 i++;
-                if ( arr.length - 1 - i >= 0 )
+                if (arr.length - 1 - i >= 0)
                     System.arraycopy(arr, i, arr, i + 1, arr.length - 1 - i);
                 arr[i] = 0;
             }
@@ -311,7 +317,7 @@ public class ArraySolutions {
                 numberOfDigits++;
                 s = s / 10;
             }
-            if ( numberOfDigits % 2 == 0 )
+            if (numberOfDigits % 2 == 0)
                 numbers++;
         }
         return numbers;
@@ -321,7 +327,7 @@ public class ArraySolutions {
         int max = -1;
         int s = 0;
         for (int num : nums)
-            if ( num == 1 ) {
+            if (num == 1) {
                 s++;
                 max = Math.max(max, s);
             } else
