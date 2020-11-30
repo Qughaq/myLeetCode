@@ -1,6 +1,3 @@
-import org.omg.PortableInterceptor.SYSTEM_EXCEPTION;
-
-import java.lang.reflect.Array;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.HashMap;
@@ -87,10 +84,11 @@ public class HashTableSolution {
 //        int[] C = {-1, 2};
 //        int[] D = {0, 2};
 //        System.out.println(fourSumCount(A, B, C, D));
+//
 
-        int[] nums = {1, 2, 1, 2, 3, 4, 5, 6, 6, 6};
-        int k = 2;
-        System.out.println(Arrays.toString(topKFrequent(nums, k)));
+//        int[] nums = {1, 2, 1, 2, 3, 4, 5, 6, 6, 6};
+//        int k = 2;
+//        System.out.println(Arrays.toString(topKFrequent(nums, k)));
     }
 
     public static int[] topKFrequent(int[] nums, int k) {

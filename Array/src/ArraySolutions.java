@@ -7,8 +7,16 @@ import java.util.Map;
 public class ArraySolutions {
 
     public static void main(String[] args) {
-        int[][] matrix = {{1, 2, 3}, {4, 5, 6}, {7, 8, 9}};
-        System.out.println(Arrays.toString(findDiagonalOrder(matrix)));
+        int[] nums = {1};
+        int target = 2;
+        System.out.println(searchInsert(nums, target));
+    }
+
+    public static int searchInsert(int[] nums, int target) {
+        for (int i = 0; i < nums.length; i++)
+            if (nums[i] >= target)
+                return i;
+        return nums.length;
     }
 
     public static int[] findDiagonalOrder(int[][] matrix) {
@@ -28,7 +36,7 @@ public class ArraySolutions {
     }
 
     public static int dominantIndex(int[] nums) {
-        if(nums.length==1) return 0;
+        if (nums.length == 1) return 0;
         int maxIndex = -1;
         int max = nums[0];
         for (int i = 0; i < nums.length; i++) {
@@ -91,11 +99,6 @@ public class ArraySolutions {
             right++;
         }
         return right - left - 1;
-    }
-
-    public static int searchInsert(int[] nums, int target) {
-
-        return 1;
     }
 
     public static double findMedianSortedArrays(int[] nums1, int[] nums2) {
