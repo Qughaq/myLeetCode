@@ -6,6 +6,61 @@ public class BinaryTreeSolution {
 
     }
 
+    public boolean hasPathSum2(TreeNode root, int sum) {
+        if (root == null)
+            return false;
+        if (root.left == null && root.right == null)
+            return sum == root.val;
+        else
+            return hasPathSum2(root.left, sum - root.val)
+                    || hasPathSum2(root.right, sum - root.val);
+    }
+
+    public boolean hasPathSum(TreeNode root, int sum) {
+        if (root == null)
+            return false;
+        Stack<TreeNode> nodeStack = new Stack<>();
+        Stack<Integer> sumStack = new Stack<>();
+        nodeStack.add(root);
+        sumStack.add(sum - root.val);
+        while (!nodeStack.isEmpty()) {
+            TreeNode curNode = nodeStack.pop();
+            int curSum = sumStack.pop();
+            if (curNode.left == null && curNode.right == null && curSum == 0)
+                return true;
+            if (curNode.left != null) {
+                nodeStack.add(curNode.left);
+                sumStack.add(curSum - curNode.left.val);
+            }
+            if (curNode.right != null) {
+                nodeStack.add(curNode.right);
+                sumStack.add(curSum - curNode.right.val);
+            }
+        }
+        return false;
+    }
+
+    public boolean isSymmetric(TreeNode root) {
+        return isMirror(root, root);
+    }
+
+    public boolean isMirror(TreeNode left, TreeNode right) {
+        if (left == null && right == null) return true;
+        if (left == null || right == null) return false;
+        return right.val == left.val
+                && isMirror(left.left, right.right)
+                && isMirror(left.right, right.left);
+    }
+
+    // 查找二叉树的深度
+    public int maxDepth(TreeNode root) {
+        if (root == null)
+            return 0;
+        int leftDepth = maxDepth(root.left);
+        int rightDepth = maxDepth(root.right);
+        return Math.max(leftDepth, rightDepth) + 1;
+    }
+
     public List<List<Integer>> levelOrder(TreeNode root) {
         List<List<Integer>> result = new ArrayList<>();
         if (root == null)

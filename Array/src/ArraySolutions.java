@@ -3,13 +3,126 @@ import java.util.Arrays;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
+import java.util.stream.IntStream;
 
 public class ArraySolutions {
 
     public static void main(String[] args) {
-        int[] nums = {1};
-        int target = 2;
-        System.out.println(searchInsert(nums, target));
+//        int[] candies = {2, 3, 5, 1, 3};
+//        int extraCandies = 3;
+//        System.out.println((kidsWithCandies(candies, extraCandies)));
+
+//        int[] nums = {2, 5, 1, 3, 4, 7};
+//        int n = 3;
+//        System.out.println(Arrays.toString(shuffle(nums, n)));
+
+//        int[] nums = {8, 1, 2, 2, 3};
+//        System.out.println(Arrays.toString(smallerNumbersThanCurrent(nums)));
+//
+//        int[] nums = {5, 2, 6, 1};
+//        System.out.println(countSmaller(nums));
+
+        int n = 5, start = 0;
+        System.out.println(xorOperation(n, start));
+    }
+
+    public static int xorOperation(int n, int start) {
+        int result = 0;
+        for (int i = 0; i < n; i++)
+            result ^= start + 2 * i;
+        return result;
+    }
+
+    public static List<Integer> countSmaller(int[] nums) {
+        List<Integer> result = new ArrayList<>();
+        for (int i = 0; i < nums.length; i++) {
+            int count = 0;
+            for (int j = i; j < nums.length; j++)
+                if (nums[i] > nums[j])
+                    count++;
+            result.add(count);
+        }
+        return result;
+    }
+
+    public static int[] smallerNumbersThanCurrent(int[] nums) {
+        int[] result = new int[nums.length];
+        for (int i = 0; i < nums.length; i++) {
+            int count = 0;
+            for (int j = 0; j < nums.length; j++)
+                if (i != j && nums[i] > nums[j])
+                    count++;
+            result[i] = count;
+        }
+        return result;
+    }
+
+    public static int[] shuffle(int[] nums, int n) {
+        int[] result = new int[nums.length];
+        for (int i = 0, j = 0; i < n; i++) {
+            result[j++] = nums[i];
+            result[j++] = nums[i + n];
+        }
+        return result;
+    }
+
+    public static List<Boolean> kidsWithCandies(int[] candies, int extraCandies) {
+        List<Boolean> result = new ArrayList<>();
+        int max = 0;
+        for (int candy : candies)
+            max = Math.max(candy, max);
+        for (int kid : candies)
+            result.add(kid + extraCandies >= max);
+        return result;
+    }
+
+    public static int[] runningSum(int[] nums) {
+        for (int i = 1; i < nums.length; i++) {
+            nums[i] += nums[i - 1];
+        }
+        return nums;
+    }
+
+    public static int maximumWealth(int[][] accounts) {
+        int maxWealth = 0;
+        for (int[] account : accounts) {
+            int wealth = 0;
+            for (int i : account)
+                wealth += i;
+            maxWealth = Math.max(wealth, maxWealth);
+        }
+        return maxWealth;
+    }
+
+    public static int numIdenticalPairs(int[] nums) {
+        int[] counts = new int[101];
+        int result = 0;
+        for (int num : nums) {
+            result += counts[num];
+            counts[num]++;
+        }
+        return result;
+    }
+
+    public static double findMedianSortedArrays(int[] nums1, int[] nums2) {
+        int[] merged = mergeTwoSortedArrays(nums1, nums2);
+        int n = merged.length;
+        if (n % 2 == 0)
+            return (merged[(n - 1) / 2] + merged[n / 2]) / 2.0;
+        else
+            return merged[n / 2];
+    }
+
+    public static int[] mergeTwoSortedArrays(int[] A, int[] B) {
+        int[] result = new int[A.length + B.length];
+        int i = 0, j = 0, k = 0;
+        while (i < A.length && j < B.length)
+            result[k++] = A[i] < B[j] ? A[i++] : B[j++];
+        while (i < A.length)
+            result[k++] = A[i++];
+        while (j < B.length)
+            result[k++] = B[j++];
+        return result;
     }
 
     public static int searchInsert(int[] nums, int target) {
@@ -99,14 +212,6 @@ public class ArraySolutions {
             right++;
         }
         return right - left - 1;
-    }
-
-    public static double findMedianSortedArrays(int[] nums1, int[] nums2) {
-        int m = nums1.length;
-        int n = nums2.length;
-
-
-        return 0;
     }
 
     public static int pivotIndex(int[] nums) {

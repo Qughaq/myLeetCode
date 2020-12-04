@@ -1,3 +1,5 @@
+import javax.swing.tree.TreeNode;
+
 public class SinglyLinkedListSolution {
     /**
      * Definition for singly-linked list.
@@ -20,7 +22,7 @@ public class SinglyLinkedListSolution {
     }
 
     public ListNode rotateRight(ListNode head, int k) {
-        if ( head == null || head.next == null ) return head;
+        if (head == null || head.next == null) return head;
         ListNode tail = head;
         int len = 1;
         while (tail.next != null) {
@@ -37,13 +39,13 @@ public class SinglyLinkedListSolution {
     }
 
     public ListNode insertionSortList(ListNode head) {
-        if ( head != null ) return null;
+        if (head != null) return null;
         ListNode sortedHeadPrev = new ListNode(0);
         ListNode lastSorted = head;
         ListNode curr = head.next;
         sortedHeadPrev.next = head;
         while (curr != null) {
-            if ( lastSorted.val <= curr.val )
+            if (lastSorted.val <= curr.val)
                 lastSorted = lastSorted.next;
             else {
                 ListNode prev = sortedHeadPrev;
@@ -63,11 +65,11 @@ public class SinglyLinkedListSolution {
         ListNode resultHead = new ListNode(0);
         ListNode temp = resultHead;
         while (l1 != null || l2 != null) {
-            if ( l1 != null ) {
+            if (l1 != null) {
                 carry += l1.val;
                 l1 = l1.next;
             }
-            if ( l2 != null ) {
+            if (l2 != null) {
                 carry += l2.val;
                 l2 = l2.next;
             }
@@ -75,7 +77,7 @@ public class SinglyLinkedListSolution {
             temp = temp.next;
             carry /= 10;
         }
-        if ( carry == 1 )
+        if (carry == 1)
             temp.next = new ListNode(1);
         return resultHead.next;
     }
@@ -84,7 +86,7 @@ public class SinglyLinkedListSolution {
         ListNode preHead = new ListNode();
         ListNode pre = preHead;
         while (l1 != null && l2 != null) {
-            if ( l1.val <= l2.val ) {
+            if (l1.val <= l2.val) {
                 pre.next = l1;
                 l1 = l1.next;
             } else {
@@ -105,13 +107,13 @@ public class SinglyLinkedListSolution {
             fast = fast.next.next;
             slow = slow.next;
         }
-        if ( fast != null ) {
+        if (fast != null) {
             slow = slow.next;
         }
         slow = reverseList(slow);
         fast = head;
         while (slow != null) {
-            if ( fast.val != slow.val ) {
+            if (fast.val != slow.val) {
                 return false;
             }
             fast = fast.next;
@@ -121,7 +123,7 @@ public class SinglyLinkedListSolution {
     }
 
     public ListNode oddEvenList(ListNode head) {
-        if ( head == null )
+        if (head == null)
             return null;
         ListNode odd = head;
         ListNode even = head.next;
@@ -137,10 +139,10 @@ public class SinglyLinkedListSolution {
     }
 
     public ListNode removeElements(ListNode head, int val) {
-        if ( head == null )
+        if (head == null)
             return null;
         head.next = removeElements(head.next, val);
-        if ( head.val == val )
+        if (head.val == val)
             return head.next;
         else
             return head;
@@ -162,7 +164,7 @@ public class SinglyLinkedListSolution {
         ListNode slow = head;
         for (int i = 0; i < n; i++)
             fast = fast.next;
-        if ( fast == null ) {
+        if (fast == null) {
             head = head.next;
             return head;
         }
@@ -175,12 +177,12 @@ public class SinglyLinkedListSolution {
     }
 
     public ListNode getIntersectionNode(ListNode headA, ListNode headB) {
-        if ( headA == null || headB == null )
+        if (headA == null || headB == null)
             return null;
         ListNode temp1 = headA;
         ListNode temp2 = headB;
         while (temp1 != null && temp2 != null) {
-            if ( temp1 == temp2 )
+            if (temp1 == temp2)
                 return temp1;
             temp1 = temp1.next;
             temp2 = temp2.next;
@@ -191,10 +193,10 @@ public class SinglyLinkedListSolution {
     public boolean hasCycle(ListNode head) {
         ListNode fast = head;
         ListNode slow = head;
-        if ( head == null || head.next == null )
+        if (head == null || head.next == null)
             return false;
         do {
-            if ( fast.next == null || fast.next.next == null )
+            if (fast.next == null || fast.next.next == null)
                 return false;
             slow = slow.next;
             fast = fast.next.next;
@@ -208,10 +210,10 @@ public class SinglyLinkedListSolution {
         while (fast != null && fast.next != null) {
             fast = fast.next.next;
             slow = slow.next;
-            if ( fast == slow ) {
+            if (fast == slow) {
                 ListNode counter = head;
                 while (counter != null) {
-                    if ( counter == slow )
+                    if (counter == slow)
                         return counter;
                     counter = counter.next;
                     slow = slow.next;
