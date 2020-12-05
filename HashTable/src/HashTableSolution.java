@@ -1,11 +1,4 @@
-import java.util.ArrayList;
-import java.util.Arrays;
-import java.util.HashMap;
-import java.util.HashSet;
-import java.util.Iterator;
-import java.util.List;
-import java.util.Map;
-import java.util.Set;
+import java.util.*;
 
 public class HashTableSolution {
     public static void main(String[] args) {
@@ -86,26 +79,47 @@ public class HashTableSolution {
 //        System.out.println(fourSumCount(A, B, C, D));
 //
 
-//        int[] nums = {1, 2, 1, 2, 3, 4, 5, 6, 6, 6};
+//        int[] nums = {1, 1, 1, 2, 2, 3, 1, 1, 1, 1, 6, 6, 6, 6, 6, 6, 6};
 //        int k = 2;
 //        System.out.println(Arrays.toString(topKFrequent(nums, k)));
+
+//        int[] A = {5, 1, 5, 2, 5, 3, 5, 4};
+//        System.out.println(repeatedNTimes(A));
+
+    }
+
+
+    public static int repeatedNTimes(int[] A) {
+        Set<Integer> set = new HashSet<>();
+        for (int a : A) {
+            if (set.contains(a))
+                return a;
+            set.add(a);
+        }
+        return 0;
     }
 
     public static int[] topKFrequent(int[] nums, int k) {
+        List[] bucket = new List[nums.length + 1];
         Map<Integer, Integer> hashMap = new HashMap<>();
-        Set<Integer> resultSet = new HashSet<>();
-        for (int num : nums) {
+        for (int num : nums)
             hashMap.put(num, hashMap.getOrDefault(num, 0) + 1);
+        for (int key : hashMap.keySet()) {
+            int frequency = hashMap.get(key);
+            if (bucket[frequency] == null) {
+                bucket[frequency] = new ArrayList<>();
+            }
+            bucket[frequency].add(key);
         }
-        int[][] result = new int[hashMap.size()][2];
-        Object[] keys = hashMap.keySet().toArray();
-        Object[] values = hashMap.values().toArray();
-        for (int i = 0; i < keys.length; i++) {
-            result[i][0] = (int) keys[i];
-            result[i][1] = (int) values[i];
+        List<Integer> res = new ArrayList<>();
+        for (int pos = bucket.length - 1; pos >= 0 && res.size() < k; pos--)
+            if (bucket[pos] != null)
+                res.addAll(bucket[pos]);
+        int[] result = new int[res.size()];
+        for (int i = 0; i < result.length; i++) {
+            result[i] = res.get(i);
         }
-        Arrays.sort(result[2]);
-        return result[1];
+        return result;
     }
 
     public static int fourSumCount(int[] A, int[] B, int[] C, int[] D) {

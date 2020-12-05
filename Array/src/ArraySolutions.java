@@ -22,8 +22,84 @@ public class ArraySolutions {
 //        int[] nums = {5, 2, 6, 1};
 //        System.out.println(countSmaller(nums));
 
-        int n = 5, start = 0;
-        System.out.println(xorOperation(n, start));
+//        int n = 5, start = 0;
+//        System.out.println(xorOperation(n, start));
+
+//        int[] nums = {1, 2, 3, 4};
+//        System.out.println(Arrays.toString(decompressRLElist(nums)));
+
+//        int[] nums = {0, 1, 2, 3, 4}, index = {0, 1, 2, 2, 1};
+//        System.out.println(Arrays.toString(createTargetArray(nums, index)));
+
+//        int[] arr = {1, 4, 2, 5, 3};
+//        System.out.println(sumOddLengthSubarrays2(arr));
+
+//        int[] arr = {3, 0, 1, 1, 9, 7};
+//        int a = 7, b = 2, c = 3;
+//        System.out.println(countGoodTriplets(arr, a, b, c));
+
+        int[][] points = {{1, 1}, {3, 4}, {-1, 0}};
+        System.out.println(minTimeToVisitAllPoints(points));
+    }
+
+    public static int minTimeToVisitAllPoints(int[][] points) {
+        int seconds = 0;
+        for (int i = 1; i < points.length; ++i) {
+            int[] cur = points[i], prev = points[i - 1];
+            seconds += Math.max(Math.abs(cur[0] - prev[0]), Math.abs(cur[1] - prev[1]));
+        }
+        return seconds;
+    }
+
+    public static int countGoodTriplets(int[] arr, int a, int b, int c) {
+        int count = 0;
+        for (int i = 0; i < arr.length; i++)
+            for (int j = i + 1; j < arr.length; j++)
+                for (int k = j + 1; k < arr.length; k++)
+                    if (Math.abs(arr[i] - arr[j]) <= a
+                            && Math.abs(arr[j] - arr[k]) <= b
+                            && Math.abs(arr[i] - arr[k]) <= c)
+                        count++;
+        return count;
+    }
+
+    public static int sumOddLengthSubarrays2(int[] arr) {
+        int sum = 0;
+        for (int i = 0; i < arr.length; i++) {
+            sum += arr[i] * (((i + 1) * (arr.length - i) + 1) / 2);
+        }
+        return sum;
+    }
+
+    public static int sumOddLengthSubarrays(int[] arr) {
+        int sum = 0;
+        for (int i = 0; i < arr.length; i++)
+            for (int j = 0; j < arr.length; j++)
+                if ((j - i) % 2 == 0)
+                    for (int r = i; r <= j; r++)
+                        sum += arr[r];
+        return sum;
+    }
+
+    public static int[] createTargetArray(int[] nums, int[] index) {
+        List<Integer> target = new ArrayList<>();
+        for (int i = 0; i < nums.length; i++)
+            target.add(index[i], nums[i]);
+        int[] result = new int[target.size()];
+        for (int i = 0; i < target.size(); i++)
+            result[i] = target.get(i);
+        return result;
+    }
+
+    public static int[] decompressRLElist(int[] nums) {
+        List<Integer> list = new ArrayList<>();
+        for (int i = 0; i < nums.length - 1; i += 2)
+            while (nums[i]-- > 0)
+                list.add(nums[i + 1]);
+        int[] result = new int[list.size()];
+        for (int i = 0; i < list.size(); i++)
+            result[i] = list.get(i);
+        return result;
     }
 
     public static int xorOperation(int n, int start) {

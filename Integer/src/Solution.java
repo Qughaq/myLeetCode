@@ -1,7 +1,23 @@
 public class Solution {
     public static void main(String[] args) {
-        int x = 123;
-        System.out.println(reverse(x));
+//        int x = 123;
+//        System.out.println(reverse(x));
+
+//        int num = 8;
+//        System.out.println(numberOfSteps(num));
+    }
+
+
+
+
+    public static int numberOfSteps(int num) {
+        int count = 0;
+        while (num != 0) {
+            if (num % 2 == 0) num /= 2;
+            else num--;
+            count++;
+        }
+        return count;
     }
 
     public static int reverse(int x) {
