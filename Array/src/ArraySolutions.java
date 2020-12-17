@@ -3,7 +3,6 @@ import java.util.Arrays;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
-import java.util.stream.IntStream;
 
 public class ArraySolutions {
 
@@ -238,6 +237,14 @@ public class ArraySolutions {
             if (num != max && max < 2 * num)
                 return -1;
         return maxIndex;
+    }
+
+    int shapeArea(int n) {
+        if (n == 1)
+            return 1;
+        if (n > 1)
+            return shapeArea(n - 1) + 4 * (n - 1);
+        return 0;
     }
 
     public static boolean isPalindrome(int x) {
