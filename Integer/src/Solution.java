@@ -1,13 +1,38 @@
+import java.util.Arrays;
+
 public class Solution {
     public static void main(String[] args) {
 //        int x = 123;
 //        System.out.println(reverse(x));
 
-//        int num = 8;
-//        System.out.println(numberOfSteps(num));
+        int[] num = {1, 3, 2};
+        System.out.println(almostIncreasingSequence(num));
     }
 
+    public static boolean almostIncreasingSequence(int[] sequence) {
+        int remove = 0;
+        int i = 0;
+        while (i < sequence.length - 1)
+            if (sequence[i] < sequence[i + 1]) i++;
+            else {
+                remove++;
+                if (i < sequence.length - 2
+                        && sequence[i + 1] <= sequence[i - 1]
+                        && sequence[i + 2] <= sequence[i])
+                    remove++;
+                else i++;
+                if (remove > 1) return false;
+            }
+        return true;
+    }
 
+    public static int makeArrayConsecutive2(int[] statues) {
+        int count = 0;
+        Arrays.sort(statues);
+        for (int i = 0; i < statues.length - 1; i++)
+            count += statues[i + 1] - statues[i] - 1;
+        return count;
+    }
 
 
     public static int numberOfSteps(int num) {
