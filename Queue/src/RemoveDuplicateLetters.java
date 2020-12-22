@@ -7,6 +7,17 @@ public class RemoveDuplicateLetters {
         System.out.println(removeDuplicateLetters(s));
     }
 
+    public int[] fraction(int[] cont) {
+        int n = cont[cont.length - 1];
+        int m = 1;
+        for (int i = cont.length - 2; i >= 0; i--) {
+            int temp = n;
+            n = cont[i] * n + m;
+            m = temp;
+        }
+        return new int[]{n, m};
+    }
+
     public static String removeDuplicateLetters(String s) {
         int len = s.length();
         char[] charArray = s.toCharArray();
