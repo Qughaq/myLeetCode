@@ -40,7 +40,7 @@ public class StringSolution {
         int res = 0;
         for (int i = 0; i < n - 1; i++) {
             int[] conn = connections[i];
-            if (conn[0] == 0 || reach[conn[0]] == true) {
+            if (conn[0] == 0 || reach[conn[0]]) {
                 res++;
                 reach[conn[1]] = true;
             }
