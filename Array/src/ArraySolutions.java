@@ -207,11 +207,6 @@ public class ArraySolutions {
         return nums.length;
     }
 
-    public static int[] findDiagonalOrder(int[][] matrix) {
-
-        return null;
-    }
-
     public static int[] plusOne(int[] digits) {
         for (int i = digits.length - 1; i >= 0; i--) {
             digits[i]++;
