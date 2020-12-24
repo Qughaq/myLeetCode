@@ -14,6 +14,8 @@
       <module fileurl="file://$PROJECT_DIR$/Codes/Stack/Stack.iml" filepath="$PROJECT_DIR$/Codes/Stack/Stack.iml" />
       <module fileurl="file://$PROJECT_DIR$/Codes/String/String.iml" filepath="$PROJECT_DIR$/Codes/String/String.iml" />
       <module fileurl="file://$PROJECT_DIR$/my-platform/my-platform.iml" filepath="$PROJECT_DIR$/my-platform/my-platform.iml" />
+      <module fileurl="file://$PROJECT_DIR$/my-platform/my-platform-api/my-platform-api.iml" filepath="$PROJECT_DIR$/my-platform/my-platform-api/my-platform-api.iml" />
+      <module fileurl="file://$PROJECT_DIR$/my-platform/my-platform-service/my-platform-service.iml" filepath="$PROJECT_DIR$/my-platform/my-platform-service/my-platform-service.iml" />
       <module fileurl="file://$PROJECT_DIR$/myLeetCode.iml" filepath="$PROJECT_DIR$/myLeetCode.iml" />
     </modules>
   </component>
