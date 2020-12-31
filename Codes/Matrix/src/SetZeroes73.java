@@ -15,6 +15,21 @@ public class SetZeroes73 {
     }
 
     public static void setZeroes(int[][] matrix) {
+        HashSet<Integer> rowSet = new HashSet<>();
+        HashSet<Integer> columnSet = new HashSet<>();
+        for (int i = 0; i < matrix.length; i++)
+            for (int j = 0; j < matrix[i].length; j++)
+                if (matrix[i][j] == 0) {
+                    rowSet.add(i);
+                    columnSet.add(j);
+                }
+        for (int i = 0; i < matrix.length; i++)
+            for (int j = 0; j < matrix[i].length; j++)
+                if (rowSet.contains(i) || columnSet.contains(j))
+                    matrix[i][j] = 0;
+    }
+
+    public static void setZeroes1(int[][] matrix) {
         boolean isCol = false;
         for (int i = 0; i < matrix.length; i++) {
             if (matrix[i][0] == 0)
@@ -36,20 +51,5 @@ public class SetZeroes73 {
         if (isCol)
             for (int i = 0; i < matrix.length; i++)
                 matrix[i][0] = 0;
-    }
-
-    public static void setZeroes1(int[][] matrix) {
-        HashSet<Integer> rowSet = new HashSet<>();
-        HashSet<Integer> columnSet = new HashSet<>();
-        for (int i = 0; i < matrix.length; i++)
-            for (int j = 0; j < matrix[i].length; j++)
-                if (matrix[i][j] == 0) {
-                    rowSet.add(i);
-                    columnSet.add(j);
-                }
-        for (int i = 0; i < matrix.length; i++)
-            for (int j = 0; j < matrix[i].length; j++)
-                if (rowSet.contains(i) || columnSet.contains(j))
-                    matrix[i][j] = 0;
     }
 }

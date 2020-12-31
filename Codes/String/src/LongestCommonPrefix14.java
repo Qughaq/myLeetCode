@@ -1,24 +1,19 @@
+import java.util.Arrays;
 import java.util.HashMap;
 import java.util.HashSet;
 
 public class LongestCommonPrefix14 {
     public static void main(String[] args) {
-        String[] strs = {"abc", "edf", "xyz"};
+        String[] strs = {"flower", "flow", "flight"};
         System.out.println(longestCommonPrefix(strs));
     }
 
     public static String longestCommonPrefix(String[] strs) {
-        HashMap<Integer, Character> hashMap = new HashMap<>();
-        int lastIndex = 0;
-        for (String str : strs) {
-            for (int i = 0; i < str.length(); i++) {
-                if (hashMap.containsKey(i) && hashMap.get(i) != str.charAt(i)) {
-                    lastIndex = i;
-                    break;
-                }
-                hashMap.put(i, str.charAt(i));
-            }
-        }
-        return strs[0].substring(0, lastIndex);
+        if (strs.length == 0) return "";
+        String prefix = strs[0];
+        for (String str : strs)
+            while (str.indexOf(prefix) != 0)
+                prefix = prefix.substring(0, prefix.length() - 1);
+        return prefix;
     }
 }
