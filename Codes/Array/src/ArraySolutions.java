@@ -331,14 +331,11 @@ public class ArraySolutions {
 
     public static void moveZeroes(int[] nums) {
         int slow = 0;
-        for (int fast = 0; fast < nums.length; fast++) {
-            if (nums[fast] != 0) {
+        for (int fast = 0; fast < nums.length; fast++)
+            if (nums[fast] != 0)
                 nums[slow++] = nums[fast];
-            }
-        }
-        while (slow < nums.length) {
+        while (slow < nums.length)
             nums[slow++] = 0;
-        }
     }
 
     public static int[] replaceElements(int[] arr) {
@@ -444,22 +441,20 @@ public class ArraySolutions {
     }
 
     private static int removeDuplicates(int[] nums) {
-        int i = 0;
-        if (nums.length == 0) {
-            return 0;
-        }
-        for (int j = 0; j < nums.length; j++)
-            if (nums[j] != nums[i])
-                nums[++i] = nums[j];
-        return i + 1;
+        int slow = 0;
+        if (nums.length == 0) return 0;
+        for (int fast = 0; fast < nums.length; fast++)
+            if (nums[fast] != nums[slow])
+                nums[++slow] = nums[fast];
+        return slow + 1;
     }
 
     public static int removeElement(int[] nums, int val) {
-        int i = 0;
-        for (int j = 0; j < nums.length; j++)
-            if (nums[j] != val)
-                nums[i++] = nums[j];
-        return i;
+        int slow = 0;
+        for (int fast = 0; fast < nums.length; fast++)
+            if (nums[fast] != val)
+                nums[slow++] = nums[fast];
+        return slow;
     }
 
     public static void merge(int[] nums1, int m, int[] nums2, int n) {
@@ -507,17 +502,5 @@ public class ArraySolutions {
                 numbers++;
         }
         return numbers;
-    }
-
-    public static int findMaxConsecutiveOnes(int[] nums) {
-        int max = -1;
-        int s = 0;
-        for (int num : nums)
-            if (num == 1) {
-                s++;
-                max = Math.max(max, s);
-            } else
-                s = 0;
-        return max;
     }
 }
