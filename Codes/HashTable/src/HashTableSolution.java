@@ -325,7 +325,14 @@ public class HashTableSolution {
         return result;
     }
 
-    public static int singleNumber(int[] nums) {
+    public int singleNumber(int[] nums) {
+        int a = 0;
+        for (int num : nums)
+            a = a ^ num;
+        return a;
+    }
+
+    public static int singleNumber2(int[] nums) {
         Set<Integer> hashset = new HashSet<>();
         for (int num : nums) {
             if (hashset.contains(num))
