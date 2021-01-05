@@ -9,11 +9,6 @@
         <module name="my-platform-service" />
         <module name="my-platform" />
       </profile>
-      <profile name="Annotation profile for myLeetCode" enabled="true">
-        <sourceOutputDir name="../../List/target/generated-sources/annotations" />
-        <sourceTestOutputDir name="../../List/target/generated-test-sources/test-annotations" />
-        <outputRelativeToContentRoot value="true" />
-      </profile>
     </annotationProcessing>
     <bytecodeTargetLevel target="8">
       <module name="List" target="8" />
