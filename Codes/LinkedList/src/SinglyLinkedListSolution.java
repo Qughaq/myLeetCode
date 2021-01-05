@@ -20,6 +20,11 @@ public class SinglyLinkedListSolution {
         }
     }
 
+    public void deleteNode(ListNode node) {
+        node.val = node.next.val;
+        node.next = node.next.next;
+    }
+
     public ListNode partition(ListNode head, int x) {
         ListNode small = new ListNode();
         ListNode smallHead = small;
@@ -179,6 +184,7 @@ public class SinglyLinkedListSolution {
     }
 
     public ListNode removeNthFromEnd(ListNode head, int n) {
+        if (head == null) return null;
         ListNode fast = head;
         ListNode slow = head;
         for (int i = 0; i < n; i++)

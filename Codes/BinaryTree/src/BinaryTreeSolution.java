@@ -4,6 +4,7 @@ import java.util.LinkedList;
 import java.util.List;
 import java.util.Queue;
 import java.util.Stack;
+import java.util.stream.IntStream;
 
 public class BinaryTreeSolution {
 
@@ -86,6 +87,29 @@ public class BinaryTreeSolution {
         int leftDepth = maxDepth(root.left);
         int rightDepth = maxDepth(root.right);
         return Math.max(leftDepth, rightDepth) + 1;
+    }
+
+    public TreeNode sortedArrayToBST(int[] nums) {
+        if (nums.length == 0)
+            return null;
+        int len = nums.length;
+        TreeNode root = new TreeNode(nums[len / 2]);
+        int[] firstHalf = new int[len / 2];
+        int[] secondHalf = new int[(len - 1) / 2];
+        System.arraycopy(nums, 0, firstHalf, 0, len / 2);
+        System.arraycopy(nums, len / 2 + 1, secondHalf, 0, (len - 1) / 2);
+        root.left = sortedArrayToBST(firstHalf);
+        root.right = sortedArrayToBST(secondHalf);
+        return root;
+    }
+
+    public boolean isValidBST(TreeNode root) {
+        List<Integer> result = new ArrayList<>();
+        inorderTraversal(root, result);
+        if (result.size() > 1)
+            for (int i = 0; i < result.size() - 1; i++)
+                if (result.get(i) >= result.get(i + 1)) return false;
+        return true;
     }
 
     public List<List<Integer>> levelOrder(TreeNode root) {
