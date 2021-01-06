@@ -27,7 +27,7 @@ class MyQueue {
     private int p_start;
 
     public MyQueue() {
-        data = new ArrayList<Integer>();
+        data = new ArrayList<>();
         p_start = 0;
     }
 
