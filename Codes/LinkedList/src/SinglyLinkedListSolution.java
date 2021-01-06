@@ -162,14 +162,28 @@ public class SinglyLinkedListSolution {
         return head;
     }
 
+//    public ListNode removeElements(ListNode head, int val) {
+//        if (head == null)
+//            return null;
+//        head.next = removeElements(head.next, val);
+//        if (head.val == val)
+//            return head.next;
+//        else
+//            return head;
+//    }
+
     public ListNode removeElements(ListNode head, int val) {
-        if (head == null)
-            return null;
-        head.next = removeElements(head.next, val);
-        if (head.val == val)
-            return head.next;
-        else
-            return head;
+        ListNode dummyHead = new ListNode(0);
+        dummyHead.next = head;
+        ListNode prev = dummyHead, curr = head;
+        while (curr != null) {
+            if (curr.val == val)
+                prev.next = curr.next;
+            else
+                prev = curr;
+            curr = curr.next;
+        }
+        return dummyHead.next;
     }
 
     public ListNode reverseList(ListNode head) {
@@ -206,13 +220,11 @@ public class SinglyLinkedListSolution {
             return null;
         ListNode temp1 = headA;
         ListNode temp2 = headB;
-        while (temp1 != null && temp2 != null) {
-            if (temp1 == temp2)
-                return temp1;
-            temp1 = temp1.next;
-            temp2 = temp2.next;
+        while (temp1 != temp2) {
+            temp1 = temp1 == null ? headB : temp1.next;
+            temp2 = temp2 == null ? headA : temp2.next;
         }
-        return null;
+        return temp1;
     }
 
     public boolean hasCycle(ListNode head) {
