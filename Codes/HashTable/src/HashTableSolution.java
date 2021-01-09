@@ -48,8 +48,8 @@ public class HashTableSolution {
 //        int k = 2;
 //        System.out.println(containsNearbyDuplicate(nums, k));
 
-//        String[] strs = {};
-//        System.out.println(groupAnagrams(strs));
+        String[] strs = {"eat", "tea", "tan", "ate", "nat", "bat"};
+        System.out.println(groupAnagrams(strs));
 
 
 //        char[][] board = {
@@ -342,13 +342,30 @@ public class HashTableSolution {
         }
         return hashset.iterator().next();
     }
-
+    public static int singleNumber3(int[] nums) {
+        Set<Integer> hashset = new HashSet<>();
+        for (int num : nums) {
+            if (hashset.contains(num))
+                hashset.remove(num);
+            else
+                hashset.add(num);
+        }
+        return hashset.iterator().next();
+    }
     public boolean containsDuplicate(int[] nums) {
         Set<Integer> hashset = new HashSet<>();
         for (int num : nums) {
             if (hashset.contains(num)) return true;
             hashset.add(num);
         }
+        return false;
+    }
+
+    public boolean containsDuplicate1(int[] nums) {
+        Set<Integer> set = new HashSet<>();
+        for (int num : nums)
+            if (!set.add(num))
+                return true;
         return false;
     }
 }

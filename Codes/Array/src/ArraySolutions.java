@@ -449,6 +449,15 @@ public class ArraySolutions {
         return slow + 1;
     }
 
+    private static int removeDuplicates1(int[] nums) {
+        int maxRepeat = 2;
+        int slow = maxRepeat - 1;
+        for (int fast = maxRepeat; fast < nums.length; fast++)
+            if (nums[fast] != nums[slow - maxRepeat + 1])
+                nums[++slow] = nums[fast];
+        return slow + 1;
+    }
+
     public static int removeElement(int[] nums, int val) {
         int slow = 0;
         for (int fast = 0; fast < nums.length; fast++)

@@ -8,6 +8,15 @@ public class Rotate {
         System.out.println(Arrays.toString(nums));
     }
 
+    public static void rotate1(int[] nums, int k) {
+        k = k % nums.length;
+        int len = nums.length;
+        int[] temp = new int[k];
+        if (k >= 0) System.arraycopy(nums, len - k, temp, 0, k);
+        if (len - k >= 0) System.arraycopy(nums, 0, nums, k, len - k);
+        if (k >= 0) System.arraycopy(temp, 0, nums, 0, k);
+    }
+
     public static void rotate(int[] nums, int k) {
         k = k % nums.length;
         int len = nums.length;

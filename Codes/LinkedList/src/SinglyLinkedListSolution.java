@@ -20,6 +20,18 @@ public class SinglyLinkedListSolution {
         }
     }
 
+    public ListNode getKthFromEnd(ListNode head, int k) {
+        ListNode slow = head;
+        ListNode fast = head;
+        for (int i = 0; i < k; i++)
+            fast = fast.next;
+        while (fast != null) {
+            fast = fast.next;
+            slow = slow.next;
+        }
+        return slow;
+    }
+
     public void deleteNode(ListNode node) {
         node.val = node.next.val;
         node.next = node.next.next;
