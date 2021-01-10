@@ -349,26 +349,6 @@ public class ArraySolutions {
         return arr;
     }
 
-    public int longestMountain(int[] arr) {
-        int maxLen = 1;
-        int i = 0;
-        while (i < arr.length) {
-            int increasing = 0, decreasing = 0;
-            while (i < arr.length && arr[i - 1] < arr[i]) {
-                i++;
-                increasing++;
-            }
-            while (i < arr.length && arr[i - 1] > arr[i]) {
-                i++;
-                decreasing++;
-            }
-            if (increasing > 0 && decreasing > 0)
-                maxLen = Math.max(maxLen, increasing + decreasing + 1);
-            while (i < arr.length && arr[i - 1] == arr[i]) i++;
-        }
-        return maxLen;
-    }
-
     public static boolean validMountainArray(int[] arr) {
         if (arr.length >= 3) {
             int left = 0;

@@ -11,23 +11,6 @@ public class ArraysIntersection {
         System.out.println(arraysIntersection(arr1, arr2, arr3));
     }
 
-    public int twoSumLessThanK(int[] A, int K) {
-        if (A == null || A.length == 0)
-            return -1;
-        Arrays.sort(A);
-        int l = 0, r = A.length - 1;
-        int result = Integer.MIN_VALUE;
-        while (l < r) {
-            if (A[l] + A[r] >= K) {
-                r--;
-            } else {
-                result = Math.max(result, A[l] + A[r]);
-                l++;
-            }
-        }
-        return result == Integer.MIN_VALUE ? -1 : result;
-    }
-
     public static List<Integer> arraysIntersection(int[] arr1, int[] arr2, int[] arr3) {
         List<Integer> result = new ArrayList<>();
         HashSet<Integer> set1 = new HashSet<>();
