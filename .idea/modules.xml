@@ -3,6 +3,7 @@
   <component name="ProjectModuleManager">
     <modules>
       <module fileurl="file://$PROJECT_DIR$/Codes/Array/Array.iml" filepath="$PROJECT_DIR$/Codes/Array/Array.iml" />
+      <module fileurl="file://$PROJECT_DIR$/ArrayList/ArrayList.iml" filepath="$PROJECT_DIR$/ArrayList/ArrayList.iml" />
       <module fileurl="file://$PROJECT_DIR$/Codes/BinarySearch/BinarySearch.iml" filepath="$PROJECT_DIR$/Codes/BinarySearch/BinarySearch.iml" />
       <module fileurl="file://$PROJECT_DIR$/Codes/BinaryTree/BinaryTree.iml" filepath="$PROJECT_DIR$/Codes/BinaryTree/BinaryTree.iml" />
       <module fileurl="file://$PROJECT_DIR$/Codes/DynamicProgramming/DynamicProgramming.iml" filepath="$PROJECT_DIR$/Codes/DynamicProgramming/DynamicProgramming.iml" />
@@ -14,7 +15,6 @@
       <module fileurl="file://$PROJECT_DIR$/Codes/Queue/Queue.iml" filepath="$PROJECT_DIR$/Codes/Queue/Queue.iml" />
       <module fileurl="file://$PROJECT_DIR$/Codes/Stack/Stack.iml" filepath="$PROJECT_DIR$/Codes/Stack/Stack.iml" />
       <module fileurl="file://$PROJECT_DIR$/Codes/String/String.iml" filepath="$PROJECT_DIR$/Codes/String/String.iml" />
-      <module fileurl="file://$PROJECT_DIR$/my-platform/my-platform.iml" filepath="$PROJECT_DIR$/my-platform/my-platform.iml" />
       <module fileurl="file://$PROJECT_DIR$/myLeetCode.iml" filepath="$PROJECT_DIR$/myLeetCode.iml" />
     </modules>
   </component>
