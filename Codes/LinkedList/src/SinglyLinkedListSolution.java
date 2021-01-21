@@ -32,6 +32,24 @@ public class SinglyLinkedListSolution {
         return slow;
     }
 
+    public ListNode deleteNodes(ListNode head, int m, int n) {
+        ListNode p = head;
+        while (true) {
+            // 保留前 m 个, 那得停留在 m - 1 这个位置, 方便删除
+            for (int i = 0; i < m - 1 && p != null; i++)
+                p = p.next;
+            // 直接跳过接下来的 n 个位置
+            for (int i = 0; i < n && p != null && p.next != null; i++)
+                p.next = p.next.next;
+            // 到末尾了, 就跳出
+            if (p == null)
+                break;
+            // 否则往后走
+            p = p.next;
+        }
+        return head;
+    }
+
     public void deleteNode(ListNode node) {
         node.val = node.next.val;
         node.next = node.next.next;
