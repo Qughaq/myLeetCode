@@ -3,6 +3,7 @@ import java.util.Arrays;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
+import java.util.stream.IntStream;
 
 public class ArraySolutions {
 
@@ -63,11 +64,7 @@ public class ArraySolutions {
     }
 
     public static int sumOddLengthSubarrays2(int[] arr) {
-        int sum = 0;
-        for (int i = 0; i < arr.length; i++) {
-            sum += arr[i] * (((i + 1) * (arr.length - i) + 1) / 2);
-        }
-        return sum;
+        return IntStream.range(0, arr.length).map(i -> arr[i] * (((i + 1) * (arr.length - i) + 1) / 2)).sum();
     }
 
     public static int sumOddLengthSubarrays(int[] arr) {
