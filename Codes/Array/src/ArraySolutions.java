@@ -31,15 +31,15 @@ public class ArraySolutions {
 //        int[] nums = {0, 1, 2, 3, 4}, index = {0, 1, 2, 2, 1};
 //        System.out.println(Arrays.toString(createTargetArray(nums, index)));
 
-//        int[] arr = {1, 4, 2, 5, 3};
-//        System.out.println(sumOddLengthSubarrays2(arr));
+        int[] arr = {1, 2, 3, 4, 5, 6};
+        System.out.println(sumOddLengthSubarrays2(arr));
 
 //        int[] arr = {3, 0, 1, 1, 9, 7};
 //        int a = 7, b = 2, c = 3;
 //        System.out.println(countGoodTriplets(arr, a, b, c));
 
-        int[][] points = {{1, 1}, {3, 4}, {-1, 0}};
-        System.out.println(minTimeToVisitAllPoints(points));
+//        int[][] points = {{1, 1}, {3, 4}, {-1, 0}};
+//        System.out.println(minTimeToVisitAllPoints(points));
     }
 
     public static int minTimeToVisitAllPoints(int[][] points) {
@@ -64,7 +64,12 @@ public class ArraySolutions {
     }
 
     public static int sumOddLengthSubarrays2(int[] arr) {
-        return IntStream.range(0, arr.length).map(i -> arr[i] * (((i + 1) * (arr.length - i) + 1) / 2)).sum();
+        int sum = 0;
+        for (int i = 0; i < arr.length; i++) {
+            int freq = ((i + 1) * (arr.length - i) + 1) / 2;
+            sum += arr[i] * freq;
+        }
+        return sum;
     }
 
     public static int sumOddLengthSubarrays(int[] arr) {
