@@ -11,6 +11,14 @@ import java.util.Stack;
 import java.util.stream.IntStream;
 
 public class BinaryTreeSolution {
+    public TreeNode invertTree(TreeNode root) {
+        if (root == null) return null;
+        TreeNode temp = root.left;
+        root.left = invertTree(root.right);
+        root.right = invertTree(temp);
+        return root;
+    }
+
     public TreeNode mirrorTree(TreeNode root) {
         if (root == null) return null;
         TreeNode temp = root.left;
