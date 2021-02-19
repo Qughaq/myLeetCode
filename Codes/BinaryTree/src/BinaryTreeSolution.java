@@ -1,4 +1,8 @@
+import com.sun.deploy.panel.ITreeNode;
+import sun.security.util.ArrayUtil;
+
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.Collections;
 import java.util.LinkedList;
 import java.util.List;
@@ -7,9 +11,49 @@ import java.util.Stack;
 import java.util.stream.IntStream;
 
 public class BinaryTreeSolution {
+    public TreeNode mirrorTree(TreeNode root) {
+        if (root == null) return null;
+        TreeNode temp = root.left;
+        root.left = mirrorTree(root.right);
+        root.right = mirrorTree(temp);
+        return root;
+    }
 
-    public static void main(String[] args) {
+    public TreeNode sortedArrayToBST(int[] nums) {
+        int len = nums.length;
+        if (len > 0) {
+            return createMinimalTree(nums, 0, len - 1);
+        } else {
+            return null;
+        }
+    }
 
+    private TreeNode createMinimalTree(int[] nums, int left, int right) {
+        if (left >= 0 && left <= right && right < nums.length) {
+            int mid = left + (right - left) / 2;
+            TreeNode treeNode = new TreeNode(nums[mid]);
+            treeNode.left = createMinimalTree(nums, left, mid - 1);
+            treeNode.right = createMinimalTree(nums, mid + 1, right);
+            return treeNode;
+        } else return null;
+    }
+
+    List<Integer> ans = new LinkedList<>();
+
+    public List<Integer> getLonelyNodes(TreeNode root) {
+        if (root.left != null) {
+            if (root.right == null) {
+                ans.add(root.left.val);
+            }
+            getLonelyNodes(root.left);
+        }
+        if (root.right != null) {
+            if (root.left == null) {
+                ans.add(root.right.val);
+            }
+            getLonelyNodes(root.right);
+        }
+        return ans;
     }
 
     public TreeNode mergeTrees(TreeNode t1, TreeNode t2) {
@@ -87,20 +131,6 @@ public class BinaryTreeSolution {
         int leftDepth = maxDepth(root.left);
         int rightDepth = maxDepth(root.right);
         return Math.max(leftDepth, rightDepth) + 1;
-    }
-
-    public TreeNode sortedArrayToBST(int[] nums) {
-        if (nums.length == 0)
-            return null;
-        int len = nums.length;
-        TreeNode root = new TreeNode(nums[len / 2]);
-        int[] firstHalf = new int[len / 2];
-        int[] secondHalf = new int[(len - 1) / 2];
-        System.arraycopy(nums, 0, firstHalf, 0, len / 2);
-        System.arraycopy(nums, len / 2 + 1, secondHalf, 0, (len - 1) / 2);
-        root.left = sortedArrayToBST(firstHalf);
-        root.right = sortedArrayToBST(secondHalf);
-        return root;
     }
 
     public boolean isValidBST(TreeNode root) {
