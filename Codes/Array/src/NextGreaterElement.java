@@ -1,5 +1,6 @@
 import java.util.Arrays;
 import java.util.HashMap;
+import java.util.HashSet;
 import java.util.Stack;
 
 public class NextGreaterElement {
@@ -7,6 +8,15 @@ public class NextGreaterElement {
         int[] nums1 = {4, 1, 2};
         int[] nums2 = {1, 2, 3, 4};
         System.out.println(Arrays.toString(nextGreaterElement(nums1, nums2)));
+    }
+
+    public int findRepeatNumber(int[] nums) {
+        HashSet<Integer> set = new HashSet<>();
+        for (int num : nums) {
+            if (!set.add(num))
+                return num;
+        }
+        return 0;
     }
 
     public static int[] nextGreaterElement(int[] nums1, int[] nums2) {
