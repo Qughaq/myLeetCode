@@ -15,6 +15,7 @@ public class MaxArea {
                 right--;
             }
         }
+
         return maxArea;
     }
 
