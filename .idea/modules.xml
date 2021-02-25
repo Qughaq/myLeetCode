@@ -2,22 +2,22 @@
 <project version="4">
   <component name="ProjectModuleManager">
     <modules>
-      <module fileurl="file://$PROJECT_DIR$/Codes/Array/Array.iml" filepath="$PROJECT_DIR$/Codes/Array/Array.iml" />
+      <module fileurl="file://$PROJECT_DIR$/Array/Array.iml" filepath="$PROJECT_DIR$/Array/Array.iml" />
       <module fileurl="file://$PROJECT_DIR$/Codes/ArrayList/ArrayList.iml" filepath="$PROJECT_DIR$/Codes/ArrayList/ArrayList.iml" />
-      <module fileurl="file://$PROJECT_DIR$/Codes/BinarySearch/BinarySearch.iml" filepath="$PROJECT_DIR$/Codes/BinarySearch/BinarySearch.iml" />
-      <module fileurl="file://$PROJECT_DIR$/Codes/BinaryTree/BinaryTree.iml" filepath="$PROJECT_DIR$/Codes/BinaryTree/BinaryTree.iml" />
-      <module fileurl="file://$PROJECT_DIR$/Codes/DynamicProgramming/DynamicProgramming.iml" filepath="$PROJECT_DIR$/Codes/DynamicProgramming/DynamicProgramming.iml" />
+      <module fileurl="file://$PROJECT_DIR$/BinarySearch/BinarySearch.iml" filepath="$PROJECT_DIR$/BinarySearch/BinarySearch.iml" />
+      <module fileurl="file://$PROJECT_DIR$/BinaryTree/BinaryTree.iml" filepath="$PROJECT_DIR$/BinaryTree/BinaryTree.iml" />
+      <module fileurl="file://$PROJECT_DIR$/DynamicProgramming/DynamicProgramming.iml" filepath="$PROJECT_DIR$/DynamicProgramming/DynamicProgramming.iml" />
       <module fileurl="file://$PROJECT_DIR$/Graph/Graph.iml" filepath="$PROJECT_DIR$/Graph/Graph.iml" />
-      <module fileurl="file://$PROJECT_DIR$/Codes/HashTable/HashTable.iml" filepath="$PROJECT_DIR$/Codes/HashTable/HashTable.iml" />
-      <module fileurl="file://$PROJECT_DIR$/Codes/Integer/Integer.iml" filepath="$PROJECT_DIR$/Codes/Integer/Integer.iml" />
-      <module fileurl="file://$PROJECT_DIR$/Codes/LinkedList/LinkedList.iml" filepath="$PROJECT_DIR$/Codes/LinkedList/LinkedList.iml" />
+      <module fileurl="file://$PROJECT_DIR$/HashTable/HashTable.iml" filepath="$PROJECT_DIR$/HashTable/HashTable.iml" />
+      <module fileurl="file://$PROJECT_DIR$/Integer/Integer.iml" filepath="$PROJECT_DIR$/Integer/Integer.iml" />
+      <module fileurl="file://$PROJECT_DIR$/LinkedList/LinkedList.iml" filepath="$PROJECT_DIR$/LinkedList/LinkedList.iml" />
       <module fileurl="file://$PROJECT_DIR$/List/List.iml" filepath="$PROJECT_DIR$/List/List.iml" />
-      <module fileurl="file://$PROJECT_DIR$/Codes/Matrix/Matrix.iml" filepath="$PROJECT_DIR$/Codes/Matrix/Matrix.iml" />
+      <module fileurl="file://$PROJECT_DIR$/Matrix/Matrix.iml" filepath="$PROJECT_DIR$/Matrix/Matrix.iml" />
       <module fileurl="file://$PROJECT_DIR$/MultiTree/MultiTree.iml" filepath="$PROJECT_DIR$/MultiTree/MultiTree.iml" />
-      <module fileurl="file://$PROJECT_DIR$/Codes/Queue/Queue.iml" filepath="$PROJECT_DIR$/Codes/Queue/Queue.iml" />
+      <module fileurl="file://$PROJECT_DIR$/Queue/Queue.iml" filepath="$PROJECT_DIR$/Queue/Queue.iml" />
       <module fileurl="file://$PROJECT_DIR$/Sort/Sort.iml" filepath="$PROJECT_DIR$/Sort/Sort.iml" />
-      <module fileurl="file://$PROJECT_DIR$/Codes/Stack/Stack.iml" filepath="$PROJECT_DIR$/Codes/Stack/Stack.iml" />
-      <module fileurl="file://$PROJECT_DIR$/Codes/String/String.iml" filepath="$PROJECT_DIR$/Codes/String/String.iml" />
+      <module fileurl="file://$PROJECT_DIR$/Stack/Stack.iml" filepath="$PROJECT_DIR$/Stack/Stack.iml" />
+      <module fileurl="file://$PROJECT_DIR$/String/String.iml" filepath="$PROJECT_DIR$/String/String.iml" />
       <module fileurl="file://$PROJECT_DIR$/myLeetCode.iml" filepath="$PROJECT_DIR$/myLeetCode.iml" />
     </modules>
   </component>
