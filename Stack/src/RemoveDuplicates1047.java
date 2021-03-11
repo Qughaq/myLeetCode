@@ -6,8 +6,24 @@ public class RemoveDuplicates1047 {
         System.out.println(removeDuplicates(s));
     }
 
-    // 用stack
     public static String removeDuplicates(String S) {
+        StringBuilder stack = new StringBuilder();
+        int top = -1;
+        for (int i = 0; i < S.length(); ++i) {
+            char ch = S.charAt(i);
+            if (top >= 0 && stack.charAt(top) == ch) {
+                stack.deleteCharAt(top);
+                --top;
+            } else {
+                stack.append(ch);
+                ++top;
+            }
+        }
+        return stack.toString();
+    }
+
+    // 用stack
+    public static String removeDuplicates2(String S) {
         char[] arr = S.toCharArray();
         Stack<Character> stack = new Stack<>();
         stack.push(arr[0]);
