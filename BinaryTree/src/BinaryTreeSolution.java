@@ -1,16 +1,23 @@
-import com.sun.deploy.panel.ITreeNode;
-import sun.security.util.ArrayUtil;
-
 import java.util.ArrayList;
-import java.util.Arrays;
 import java.util.Collections;
 import java.util.LinkedList;
 import java.util.List;
 import java.util.Queue;
 import java.util.Stack;
-import java.util.stream.IntStream;
 
 public class BinaryTreeSolution {
+    public boolean isSameTree(TreeNode p, TreeNode q) {
+        if (p == null && q == null) {
+            return true;
+        } else if (p == null || q == null) {
+            return false;
+        } else if (p.val != q.val) {
+            return false;
+        } else {
+            return isSameTree(p.left, q.left) && isSameTree(p.right, q.right);
+        }
+    }
+
     public TreeNode invertTree(TreeNode root) {
         if (root == null) return null;
         TreeNode temp = root.left;

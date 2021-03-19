@@ -1,23 +1,22 @@
 
 public class SinglyLinkedListSolution {
-    /**
-     * Definition for singly-linked list.
-     */
-    public static class ListNode {
-        int val;
+    public ListNode reverseBetween(ListNode head, int left, int right) {
+        // 设置dummyHead是这一类问题的一般做法
+        ListNode dummyHead = new ListNode(-1);
+        dummyHead.next = head;
+        ListNode pre = dummyHead;
+        for (int i = 0; i < left - 1; i++) {
+            pre = pre.next;
+        }
+        ListNode cur = pre.next;
         ListNode next;
-
-        ListNode() {
+        for (int i = 0; i < right - left; i++) {
+            next = cur.next;
+            cur.next = next.next;
+            next.next = pre.next;
+            pre.next = next;
         }
-
-        ListNode(int val) {
-            this.val = val;
-        }
-
-        ListNode(int val, ListNode next) {
-            this.val = val;
-            this.next = next;
-        }
+        return dummyHead.next;
     }
 
     public ListNode getKthFromEnd(ListNode head, int k) {
