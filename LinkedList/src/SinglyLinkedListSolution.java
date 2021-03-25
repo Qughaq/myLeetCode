@@ -1,5 +1,22 @@
 
 public class SinglyLinkedListSolution {
+
+    public ListNode deleteDuplicates(ListNode head) {
+        ListNode dummy = new ListNode(0, head);
+        ListNode cur = dummy;
+        while (cur.next != null && cur.next.next != null) {
+            if (cur.next.val == cur.next.next.val) {
+                int x = cur.next.val;
+                while (cur.next != null && cur.next.val == x) {
+                    cur.next = cur.next.next;
+                }
+            } else {
+                cur = cur.next;
+            }
+        }
+        return dummy.next;
+    }
+
     public ListNode reverseBetween(ListNode head, int left, int right) {
         // 设置dummyHead是这一类问题的一般做法
         ListNode dummyHead = new ListNode(-1);
