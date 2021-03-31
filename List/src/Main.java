@@ -1,5 +1,3 @@
-import java.util.List;
-
 public class Main {
     public static void main(String[] args) {
         OrderedStream os = new OrderedStream(5);
@@ -9,5 +7,8 @@ public class Main {
         os.insert(5, "eeeee"); // 插入 (5, "eeeee")，返回 []
         os.insert(4, "ddddd"); // 插入 (4, "ddddd")，返回 ["ddddd", "eeeee"]
 
+        int[] nums = {1, 2, 3};
+        SubsetsWithDup subsetsWithDup = new SubsetsWithDup();
+        System.out.println(subsetsWithDup.subsetsWithDup(nums));
     }
 }
